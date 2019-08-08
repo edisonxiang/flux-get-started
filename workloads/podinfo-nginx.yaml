@@ -8,7 +8,6 @@ metadata:
     app: nginxinfo
   annotations:
     flux.weave.works/automated: "true"
-    flux.weave.works/tag.nginxinfod: semver:~1.0
 spec:
   strategy:
     rollingUpdate:
@@ -26,7 +25,7 @@ spec:
     spec:
       containers:
       - name: nginxinfod
-        image: xiangxinyong/nginxtest:1.0.1
+        image: xiangxinyong/nginxtest:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
