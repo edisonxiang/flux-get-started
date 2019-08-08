@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: nginxinfod
-        image: swr.cn-north-1.myhuaweicloud.com/freesky-edward/test:1.0.201908081458089776
+        image: swr.cn-north-1.myhuaweicloud.com/freesky-edward/test:1.0.201908081502467287
         imagePullPolicy: Always
         ports:
         - containerPort: 80
