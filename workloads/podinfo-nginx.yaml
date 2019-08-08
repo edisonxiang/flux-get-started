@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: nginxinfod
-        image: xiangxinyong/nginxtest:latest
+        image: xiangxinyong/nginxtest:1.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 80
