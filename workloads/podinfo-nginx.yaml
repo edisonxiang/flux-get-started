@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginxinfo
+  namespace: demo
+  labels:
+    app: nginxinfo
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.nginxinfod: semver:~1.0
+spec:
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: nginxinfo
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+      labels:
+        app: nginxinfo
+    spec:
+      containers:
+      - name: nginxinfod
+        image: xiangxinyong/nginxtest:1.0.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
