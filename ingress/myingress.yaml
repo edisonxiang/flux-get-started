@@ -3,8 +3,8 @@ kind: Ingress
 metadata:
   annotations:
     traefik.ingress.kubernetes.io/service-weights: |
-      myapp: 90%
-      myappcanary: 10%
+      myapp: 50%
+      myappcanary: 50%
   name: myappingress
   namespace: kube-system
 spec:
