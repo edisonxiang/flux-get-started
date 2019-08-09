@@ -1,0 +1,49 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myappcanary
+  namespace: kube-system
+  labels:
+    app: myappcanary
+  annotations:
+    flux.weave.works/automated: "false"
+spec:
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: myappcanary
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+      labels:
+        app: myappcanary
+    spec:
+      containers:
+      - name: myappcanary
+        image: xiangxinyong/nginxtest:1.0.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myappcanary
+  namespace: kube-system
+  labels:
+    app: myappcanary
+spec:
+  type: ClusterIP
+  selector:
+    app: myappcanary
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
