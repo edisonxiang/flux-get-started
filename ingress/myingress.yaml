@@ -5,7 +5,8 @@ metadata:
     traefik.ingress.kubernetes.io/service-weights: |
       myapp: 90%
       myappcanary: 10%
-  name: my-app
+  name: myappingress
+  namespace: kube-system
 spec:
   rules:
   - host: myapp.minikube
